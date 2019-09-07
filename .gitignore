@@ -1,0 +1,16 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# build
+build/
+
+# dependencies
+node_modules/
+
+# IDE files
+.project
+.settings/
+
+# misc
+.DS_Store
+*.log
+*.swp

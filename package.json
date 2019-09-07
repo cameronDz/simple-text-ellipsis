@@ -1,0 +1,41 @@
+{
+  "name": "simple-text-ellipsis",
+  "version": "0.0.1",
+  "description": "Simple React component to responsively control the size of text, and make longer/shorter depending on the screen size.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack/config.js",
+    "start": "webpack --watch --config webpack/config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ellipsis",
+    "react"
+  ],
+  "author": {
+    "name": "cameronDz",
+    "email": "cameorndziurgot@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cameronDz/simple-text-ellipsis"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "react": "^16.9.0"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "webpack": "^4.39.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "webpack-cli": "^3.3.8"
+  }
+}
