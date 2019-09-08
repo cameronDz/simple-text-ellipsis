@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2019-09-08
+### Added
+- Add whitelist of files to be include in module in package.json
+
+### Changed
+- Organize package.json to be alphabetical order
+
 ## [0.0.3] - 2019-09-08
 ### Added
 - Added module to root directory

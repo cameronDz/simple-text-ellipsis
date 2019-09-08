@@ -1,40 +1,13 @@
 {
-  "name": "simple-text-ellipsis",
-  "version": "0.0.3",
-  "description": "Simple React component to responsively control the size of text, and make longer/shorter depending on the screen size.",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack --config webpack/config.js",
-    "start": "webpack --watch --config webpack/config.js",
-    "test": "mocha --require @babel/register --reqire jsdom-global/register"
-  },
-  "keywords": [
-    "ellipsis",
-    "react"
-  ],
   "author": {
-    "name": "cameronDz",
-    "email": "cameorndziurgot@gmail.com"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cameronDz/simple-text-ellipsis"
-  },
-  "jest": {
-    "setupFiles": [
-      "test/setup.js"
-    ]
-  },
-  "peerDependencies": {
-    "@babel/core": "^7.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.0.0-0"
+    "email": "cameorndziurgot@gmail.com",
+    "name": "cameronDz"
   },
   "dependencies": {
     "react": "^16.9.0",
     "webpack": "^4.39.3"
   },
+  "description": "Simple React component to responsively control the size of text, and make longer/shorter depending on the screen size.",
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
@@ -53,5 +26,39 @@
     "react-dom": "^16.9.0",
     "react-test-renderer": "^16.9.0",
     "webpack-cli": "^3.3.8"
-  }
+  },
+  "files": [
+    "index.js",
+    "package.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "jest": {
+    "setupFiles": [
+      "test/setup.js"
+    ]
+  },
+  "keywords": [
+    "ellipsis",
+    "react"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "simple-text-ellipsis",
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.0.0-0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cameronDz/simple-text-ellipsis"
+  },
+  "scripts": {
+    "build": "webpack --config webpack/config.js",
+    "start": "webpack --watch --config webpack/config.js",
+    "test": "mocha --require @babel/register --reqire jsdom-global/register"
+  },
+  "version": "0.0.4"
 }
