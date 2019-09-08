@@ -1,7 +1,7 @@
 import React from 'react';
 
 const simpleEllipsis = ({text}) => {
-  return <div>{text}...</div>;
+  return !! text && (<React.Fragment>{text}...</React.Fragment>);
 };
 
 export default simpleEllipsis;
