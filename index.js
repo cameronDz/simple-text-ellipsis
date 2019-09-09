@@ -102,25 +102,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var propTypes = {
-  text: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
   count: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
-  gridCounts: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.object
+  gridCounts: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.shape({
+    xs: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
+    sm: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
+    md: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
+    lg: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
+    xl: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number
+  }),
+  text: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
+  truncateBy: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string
 };
 /**
- * @param {*} text String
  * @param {*} count Number
  * @param {*} gridCounts Object
+ * @param {*} text String
+ * @param {*} truncateBy String
  */
 
 var simpleEllipsis = function simpleEllipsis(_ref) {
-  var text = _ref.text,
-      count = _ref.count,
-      gridCounts = _ref.gridCounts;
+  var count = _ref.count,
+      gridCounts = _ref.gridCounts,
+      text = _ref.text,
+      truncateBy = _ref.truncateBy;
   var gridSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   var createTextWithEllipsis = function createTextWithEllipsis(trimCount) {
-    var trimmedText = Object(_lib__WEBPACK_IMPORTED_MODULE_3__["trimTextByCount"])(text, trimCount);
-    return !!trimmedText && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, trimmedText, "...");
+    var trimmedText = Object(_lib__WEBPACK_IMPORTED_MODULE_3__["trimTextByCount"])(text, truncateBy, trimCount);
+    return !!trimmedText && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, trimmedText);
   };
 
   var createHiddenGrid = function createHiddenGrid() {
@@ -135,7 +144,7 @@ var simpleEllipsis = function simpleEllipsis(_ref) {
   };
 
   var createEllipsis = function createEllipsis() {
-    return !!gridCounts ? createHiddenGrid() : createTextWithEllipsis();
+    return !!gridCounts ? createHiddenGrid() : createTextWithEllipsis(count);
   };
 
   return !!text && createEllipsis();
@@ -9430,19 +9439,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trimTextByCount", function() { return trimTextByCount; });
 var trimTextByCount = function trimTextByCount() {
   var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var count = arguments.length > 1 ? arguments[1] : undefined;
+  var truncateBy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var count = arguments.length > 2 ? arguments[2] : undefined;
   var trimmedText = '';
 
   if (!!text && typeof text === 'string') {
-    trimmedText = !!(!!count && count > 0 && text.length > count) ? text.substring(0, count - 1) : text;
+    trimmedText = !!truncateBy === 'words' ? truncateByWords(text, count) : truncateByCharacters(text, count);
   }
 
   return trimmedText;
 };
 
-var removeValueFromArray = function removeValueFromArray(arr, value) {
-  var array = !!Array.isArray(arr) ? arr : [];
-  return array.filter(function (element) {
+var truncateByCharacters = function truncateByCharacters() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var count = arguments.length > 1 ? arguments[1] : undefined;
+  return !!(!!count && count > 0 && text.length > count) ? text.substring(0, count) + '...' : text;
+};
+
+var truncateByWords = function truncateByWords() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var count = arguments.length > 1 ? arguments[1] : undefined;
+  var words = text.split(' ');
+  return !!(!!count && count > 0 && words.length > count) ? createTruncatedTextFromArray(words.slice(0, count - 1)) + '...' : text;
+};
+
+var createTruncatedTextFromArray = function createTruncatedTextFromArray(array) {
+  return !!Array.isArray(array) && array.map(function (item, key) {
+    var space = !!(key !== array.length - 1) ? ' ' : '';
+    return item + space;
+  });
+};
+
+var removeValueFromArray = function removeValueFromArray(array, value) {
+  var newArray = !!Array.isArray(array) ? array : [];
+  return newArray.filter(function (element) {
     return element != value;
   });
 };
