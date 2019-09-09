@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { trimTextByCount } from '../src/lib';
+import { removeValueFromArray, trimTextByCount } from '../src/lib';
 
 describe('lib tests', () => {
   describe('# trimTextByCount', () => {
@@ -50,6 +50,40 @@ describe('lib tests', () => {
       const expected = 'This';
       const actual = trimTextByCount(expected, 4);
       expect(actual).to.equal(expected);
+    });
+  });
+
+  describe('# removeValueFromArray', () => {
+    it('non array (Number) arr params provided, - returns empty array', () => {
+      const expected = [];
+      const actual = removeValueFromArray(4);
+      expect(actual).to.eql(expected);
+    });
+
+    it('non array (null) arr params provided, - returns empty array', () => {
+      const expected = [];
+      const actual = removeValueFromArray(null);
+      expect(actual).to.eql(expected);
+    });
+
+    it('array params provided with no value param, - returns exact array', () => {
+      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const actual = removeValueFromArray(expected);
+      expect(actual).to.eql(expected);
+    });
+
+    it('array params provided with value param no in array, - returns exact array', () => {
+      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const actual = removeValueFromArray(expected, 'PASSING_TEST');
+      expect(actual).to.eql(expected);
+    });
+
+    it('array params provided with value param in array, - returns array without element', () => {
+      const value = 'BAD_VALUE';
+      const original = [23, 'Dog', 3, value, { bird: 'gird'}, 'TESTING'];
+      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const actual = removeValueFromArray(original, value);
+      expect(actual).to.eql(expected);
     });
   });
 });

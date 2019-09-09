@@ -9,6 +9,14 @@ const trimTextByCount = (text = '', count) => {
   return trimmedText
 };
 
+const removeValueFromArray = (arr, value) => {
+  const array = !! Array.isArray(arr) ? arr : [];
+  return array.filter(element => {
+      return element != value;
+  });
+};
+
 export {
+  removeValueFromArray,
   trimTextByCount
 };

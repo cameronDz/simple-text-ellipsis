@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2019-09-09
+### Added
+- Add test for new lib function for removing value from array
+
+### Fixed
+- Hidden MUI now implemented correctly with array of breakpoints it should be hidden at
+
 ## [0.0.5] - 2019-09-08
 ### Added
 - Add feature of using Material UI breakpoints changing components text count

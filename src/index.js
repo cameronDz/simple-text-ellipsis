@@ -1,7 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { trimTextByCount } from './lib';
+import { removeValueFromArray, trimTextByCount } from './lib';
 
 const propTypes = {
   text: PropTypes.string,
@@ -27,11 +27,12 @@ const simpleEllipsis = ({text, count, gridCounts}) => {
 
   const createHiddenGrid = () => {
     return gridSizes.map((item, key) => {
+      const only = removeValueFromArray(gridSizes, item);
       const gridCount = !!gridCounts && !!gridCounts[item]
         ? gridCounts[item]
         : count;
       return (
-        <Hidden key={key} only={item}>
+        <Hidden key={key} only={only}>
           {createTextWithEllipsis(gridCount)}...
         </Hidden>)
     });
