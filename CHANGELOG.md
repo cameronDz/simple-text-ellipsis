@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Fixed
 - When not using MUI counts, correctly passing count to function that truncates text
+- Spelling on README
 
 ## [0.0.7] - 2019-09-09
 ### Added
