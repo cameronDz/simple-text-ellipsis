@@ -4,21 +4,29 @@ import PropTypes from 'prop-types';
 import { removeValueFromArray, trimTextByCount } from './lib';
 
 const propTypes = {
-  text: PropTypes.string,
   count: PropTypes.number,
-  gridCounts: PropTypes.object
+  gridCounts: PropTypes.shape({
+    xs:  PropTypes.number,
+    sm:  PropTypes.number,
+    md:  PropTypes.number,
+    lg:  PropTypes.number,
+    xl:  PropTypes.number
+  }),
+  text: PropTypes.string,
+  truncateBy: PropTypes.string
 };
 
 /**
- * @param {*} text String
  * @param {*} count Number
  * @param {*} gridCounts Object
+ * @param {*} text String
+ * @param {*} truncateBy String
  */
-const simpleEllipsis = ({text, count, gridCounts}) => {
+const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
   const gridSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   const createTextWithEllipsis = trimCount => {
-    const trimmedText = trimTextByCount(text, trimCount);
+    const trimmedText = trimTextByCount(text, truncateBy, trimCount);
     return !! trimmedText && (
       <React.Fragment>
         {trimmedText}...

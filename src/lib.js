@@ -1,17 +1,36 @@
-
-const trimTextByCount = (text = '', count) => {
+const trimTextByCount = (text = '', truncateBy = '', count) => {
   let trimmedText = '';
   if (!!text && typeof text === 'string') {
-    trimmedText = !! (!!count && count > 0 && text.length > count)
-      ? text.substring(0, count-1)
-      : text;
+    trimmedText = !! truncateBy === 'words'
+      ? truncateByWords(text, count)
+      : truncateByCharacters(text, count);
   }
   return trimmedText
 };
 
-const removeValueFromArray = (arr, value) => {
-  const array = !! Array.isArray(arr) ? arr : [];
-  return array.filter(element => {
+const truncateByCharacters = (text = '', count) => {
+  return !! (!!count && count > 0 && text.length > count)
+    ? text.substring(0, count-1)
+    : text;
+};
+
+const truncateByWords = (text = '', count) => {
+  const words = text.split(' ');
+  return !! (!!count && count > 0 && words.length > count)
+  ? createTruncatedTextFromArray(words.slice(0, count-1))
+  : text;
+};
+
+const createTruncatedTextFromArray = (array) => {
+  return !! Array.isArray(array) && array.map((item, key) => {
+    const space = !!(key !== array.length -1) ? ' ' : '';
+    return item + space;
+  });
+};
+
+const removeValueFromArray = (array, value) => {
+  const newArray = !! Array.isArray(array) ? array : [];
+  return newArray.filter(element => {
       return element != value;
   });
 };

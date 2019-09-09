@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2019-09-09
+### Added
+- New feature that allows truncation by character (default) or words
+- Description of props in README
+
 ## [0.0.6] - 2019-09-09
 ### Added
 - Add test for new lib function for removing value from array
