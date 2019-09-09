@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 2019-09-08
+### Added
+- Add feature of using Material UI breakpoints changing components text count
+- Add test for new lib function
+
+### Changed
+- Moved function for determining when to display text to own lib
+
 ## [0.0.4] - 2019-09-08
 ### Added
 - Add whitelist of files to be include in module in package.json
