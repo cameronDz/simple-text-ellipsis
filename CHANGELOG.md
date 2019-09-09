@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 2019-09-09
+### Changed
+- Only adding ellipsis if text was truncated
+
+## Fixed
+- When not using MUI counts, correctly passing count to function that truncates text
+
 ## [0.0.7] - 2019-09-09
 ### Added
 - New feature that allows truncation by character (default) or words

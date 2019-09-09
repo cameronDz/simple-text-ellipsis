@@ -43,6 +43,7 @@
   },
   "keywords": [
     "ellipsis",
+    "material-ui",
     "react"
   ],
   "license": "MIT",
@@ -62,5 +63,5 @@
     "start": "webpack --watch --config webpack/config.js",
     "test": "mocha --require @babel/register --reqire jsdom-global/register"
   },
-  "version": "0.0.7"
+  "version": "0.0.8"
 }

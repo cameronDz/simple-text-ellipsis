@@ -10,14 +10,14 @@ const trimTextByCount = (text = '', truncateBy = '', count) => {
 
 const truncateByCharacters = (text = '', count) => {
   return !! (!!count && count > 0 && text.length > count)
-    ? text.substring(0, count-1)
+    ? text.substring(0, count) + '...'
     : text;
 };
 
 const truncateByWords = (text = '', count) => {
   const words = text.split(' ');
   return !! (!!count && count > 0 && words.length > count)
-  ? createTruncatedTextFromArray(words.slice(0, count-1))
+  ? createTruncatedTextFromArray(words.slice(0, count-1)) + '...'
   : text;
 };
 
