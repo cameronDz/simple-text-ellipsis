@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.11] - 2019-09
+### Changed
+- Updated readme with description and correct syntax
+
 ## [0.0.10] - 2019-09-10
 ### Removed
 - Generated module from git source control

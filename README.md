@@ -1,6 +1,6 @@
 # Simple-Text-Ellipsis #
 
-Simple-Text-Ellipsis is an NPM module used to create simple text ellipsise component.
+Simple-Text-Ellipsis is an NPM module used to create simple text ellipsis' with React and Material UI.
 
 ## Installation
 
@@ -12,15 +12,42 @@ npm install simple-text-ellipsis
 
 ## Usage
 
+Using Character Example
 ```javascript
 import React from 'react';
 import SimpleEllipsis from 'simple-text-ellipsis';
 
-const yourComponent = (props) => {
+const yourComponent = () => {
+  const text = 'This is an example of using SimpleEllipsis component';
+  const count = 15;
+  const gridCounts = {
+    lg: 20, // at lg break point, will display 'This is an example o...'
+    xl: 30  // at xl break point, will display 'This is an example of using Si...'
+  };        // will display 'This is an exam...' for all other break points since count prop is specified
   return (
       <React.Fragment>
-        <SimpleEllipsis text={props.text} />
-      </React.Fragment>>);
+        <SimpleEllipsis count={count} gridCounts={gridCounts} text={text} />
+      </React.Fragment>);
+};
+export default yourComponent;
+```
+
+Using Words Example
+```javascript
+import React from 'react';
+import SimpleEllipsis from 'simple-text-ellipsis';
+
+const yourComponent = () => {
+  const text = 'This is an example of using SimpleEllipsis component';
+  const truncatedBy = 'words';
+  const gridCounts = {
+    xs: 3, // at xs break point, will display 'This is an...'
+    sm: 6  // at xs break point, will display 'This is an example of using...'
+  };       // will display entire text string for all other breakpoints since no count prop is specified
+  return (
+      <React.Fragment>
+        <SimpleEllipsis gridCount={gridCounts} text={text} truncatedBy={truncatedBy} />
+      </React.Fragment>);
 };
 export default yourComponent;
 ```
