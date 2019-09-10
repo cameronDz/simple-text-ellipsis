@@ -21,9 +21,9 @@ const yourComponent = () => {
   const text = 'This is an example of using SimpleEllipsis component';
   const count = 15;
   const gridCounts = {
-    lg: 20, // at lg break point, will display 'This is an example o...'
-    xl: 30  // at xl break point, will display 'This is an example of using Si...'
-  };        // will display 'This is an exam...' for all other break points since count prop is specified
+    lg: 20, // 'This is an example o...' will display at lg break point
+    xl: 30  // 'This is an example of using Si...' will display at xl break point
+  };        // 'This is an exam...' will display for all other break points since count prop is specified
   return (
       <React.Fragment>
         <SimpleEllipsis count={count} gridCounts={gridCounts} text={text} />
