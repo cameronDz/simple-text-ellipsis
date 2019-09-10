@@ -29,5 +29,20 @@ describe('component tests', () => {
       const html = wrap.html();
       expect(!!html).to.equal(false);
     });
+
+    it('should render all 5 words with no ellipsis', () => {
+      const text = 'This should NOT have ellipsis';
+      const wrap = mount(<SimpleEllipsis count={5} text={text} truncateBy='words' />);
+      const html = wrap.html();
+      expect(html).to.equal(text);
+    });
+
+    it('should render ellipsis after 6 words', () => {
+      const expected = 'This should have an ellipsis but...';
+      const text = 'This should have an ellipsis but check';
+      const wrap = mount(<SimpleEllipsis count={6} text={text} truncateBy='words' />);
+      const html = wrap.html();
+      expect(html).to.equal(expected);
+    });
   });
 });

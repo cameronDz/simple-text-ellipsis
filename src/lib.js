@@ -1,9 +1,11 @@
 const trimTextByCount = (text = '', truncateBy = '', count) => {
   let trimmedText = '';
   if (!!text && typeof text === 'string') {
-    trimmedText = !! truncateBy === 'words'
-      ? truncateByWords(text, count)
-      : truncateByCharacters(text, count);
+    if (truncateBy === "words") {
+      trimmedText = truncateByWords(text, count);
+    } else {
+      trimmedText = truncateByCharacters(text, count);
+    }
   }
   return trimmedText
 };
@@ -17,15 +19,19 @@ const truncateByCharacters = (text = '', count) => {
 const truncateByWords = (text = '', count) => {
   const words = text.split(' ');
   return !! (!!count && count > 0 && words.length > count)
-  ? createTruncatedTextFromArray(words.slice(0, count-1)) + '...'
-  : text;
+    ? createTruncatedTextFromArray(words.slice(0, count)) + '...'
+    : text;
 };
 
 const createTruncatedTextFromArray = (array) => {
-  return !! Array.isArray(array) && array.map((item, key) => {
-    const space = !!(key !== array.length -1) ? ' ' : '';
-    return item + space;
-  });
+  let text = '';
+  if (!! Array.isArray(array)) {
+    array.map((item, key) => {
+      const space = !!(key !== array.length - 1) ? ' ' : '';
+      text += item + space;
+    });
+  }
+  return text;
 };
 
 const removeValueFromArray = (array, value) => {

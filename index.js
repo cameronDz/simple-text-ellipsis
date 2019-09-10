@@ -9444,7 +9444,11 @@ var trimTextByCount = function trimTextByCount() {
   var trimmedText = '';
 
   if (!!text && typeof text === 'string') {
-    trimmedText = !!truncateBy === 'words' ? truncateByWords(text, count) : truncateByCharacters(text, count);
+    if (truncateBy === "words") {
+      trimmedText = truncateByWords(text, count);
+    } else {
+      trimmedText = truncateByCharacters(text, count);
+    }
   }
 
   return trimmedText;
@@ -9460,14 +9464,20 @@ var truncateByWords = function truncateByWords() {
   var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var count = arguments.length > 1 ? arguments[1] : undefined;
   var words = text.split(' ');
-  return !!(!!count && count > 0 && words.length > count) ? createTruncatedTextFromArray(words.slice(0, count - 1)) + '...' : text;
+  return !!(!!count && count > 0 && words.length > count) ? createTruncatedTextFromArray(words.slice(0, count)) + '...' : text;
 };
 
 var createTruncatedTextFromArray = function createTruncatedTextFromArray(array) {
-  return !!Array.isArray(array) && array.map(function (item, key) {
-    var space = !!(key !== array.length - 1) ? ' ' : '';
-    return item + space;
-  });
+  var text = '';
+
+  if (!!Array.isArray(array)) {
+    array.map(function (item, key) {
+      var space = !!(key !== array.length - 1) ? ' ' : '';
+      text += item + space;
+    });
+  }
+
+  return text;
 };
 
 var removeValueFromArray = function removeValueFromArray(array, value) {
