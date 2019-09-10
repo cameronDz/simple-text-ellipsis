@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.10] - 2019-09-10
+### Removed
+- Generated module from git source control
+
 ## [0.0.9] - 2019-09-09
 ### Added
 - Tests for words truncation/ellipsis
