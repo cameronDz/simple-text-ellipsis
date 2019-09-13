@@ -6,9 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.11] - 2019-09
+## [0.0.11] - 2019-09-13
+### Added
+- StandardJS library for linting/formatting
+- More descriptive examples to README
+
 ### Changed
 - Updated readme with description and correct syntax
+- Update NPM packages to latest versions
 
 ## [0.0.10] - 2019-09-10
 ### Removed
