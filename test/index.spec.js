@@ -8,7 +8,6 @@ describe('component tests', () => {
     it('should render ellipsis with text prop and count less than text length', () => {
       const wrap = mount(<SimpleEllipsis text='TEXT_TEXT' count={5} />);
       const html = wrap.html();
-      console.log('html', html);
       expect(html.indexOf('TEXT_...') !== -1).to.equal(true);
     });
 

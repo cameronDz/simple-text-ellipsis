@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
 import { removeValueFromArray, trimTextByCount } from './lib';
@@ -28,9 +28,9 @@ const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
   const createTextWithEllipsis = trimCount => {
     const trimmedText = trimTextByCount(text, truncateBy, trimCount);
     return !! trimmedText && (
-      <React.Fragment>
+      <Fragment>
         {trimmedText}
-      </React.Fragment>);
+      </Fragment>);
   };
 
   const createHiddenGrid = () => {

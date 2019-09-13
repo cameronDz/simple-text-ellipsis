@@ -67,21 +67,21 @@ describe('lib tests', () => {
     });
 
     it('array params provided with no value param, - returns exact array', () => {
-      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const expected = [23, 'Dog', 3, { bird: 'gird' }, 'TESTING'];
       const actual = removeValueFromArray(expected);
       expect(actual).to.eql(expected);
     });
 
     it('array params provided with value param no in array, - returns exact array', () => {
-      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const expected = [23, 'Dog', 3, { bird: 'gird' }, 'TESTING'];
       const actual = removeValueFromArray(expected, 'PASSING_TEST');
       expect(actual).to.eql(expected);
     });
 
     it('array params provided with value param in array, - returns array without element', () => {
       const value = 'BAD_VALUE';
-      const original = [23, 'Dog', 3, value, { bird: 'gird'}, 'TESTING'];
-      const expected = [23, 'Dog', 3, { bird: 'gird'}, 'TESTING'];
+      const original = [23, 'Dog', 3, value, { bird: 'gird' }, 'TESTING'];
+      const expected = [23, 'Dog', 3, { bird: 'gird' }, 'TESTING'];
       const actual = removeValueFromArray(original, value);
       expect(actual).to.eql(expected);
     });
