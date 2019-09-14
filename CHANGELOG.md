@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.14] - 2019-09-14
+### Fixed
+- README spelling error
+
 ## [0.0.13] - 2019-09-14
 ### Changed
 - README examples line lenght to be under 80 characters
