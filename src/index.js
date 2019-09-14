@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
 import { removeValueFromArray, trimTextByCount } from './lib';
@@ -6,11 +6,11 @@ import { removeValueFromArray, trimTextByCount } from './lib';
 const propTypes = {
   count: PropTypes.number,
   gridCounts: PropTypes.shape({
-    xs:  PropTypes.number,
-    sm:  PropTypes.number,
-    md:  PropTypes.number,
-    lg:  PropTypes.number,
-    xl:  PropTypes.number
+    xs: PropTypes.number,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number,
+    xl: PropTypes.number
   }),
   text: PropTypes.string,
   truncateBy: PropTypes.string
@@ -22,12 +22,12 @@ const propTypes = {
  * @param {*} text String
  * @param {*} truncateBy String
  */
-const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
+const simpleEllipsis = ({ count, gridCounts, text, truncateBy }) => {
   const gridSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   const createTextWithEllipsis = trimCount => {
     const trimmedText = trimTextByCount(text, trimCount, truncateBy);
-    return !! trimmedText && trimmedText;
+    return !!trimmedText && trimmedText;
   };
 
   const createHiddenGrid = () => {
@@ -39,17 +39,17 @@ const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
       return (
         <Hidden key={key} only={only}>
           {createTextWithEllipsis(gridCount)}
-        </Hidden>)
+        </Hidden>);
     });
   };
 
   const createEllipsis = () => {
-    return !! gridCounts
+    return !!gridCounts
       ? createHiddenGrid()
       : createTextWithEllipsis(count);
   };
 
-  return !! text && createEllipsis();
+  return !!text && createEllipsis();
 };
 
 simpleEllipsis.propTypes = propTypes;

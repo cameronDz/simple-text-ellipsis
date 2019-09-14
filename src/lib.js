@@ -7,7 +7,7 @@ const trimTextByCount = (text = '', count = 0, truncateBy = '') => {
       trimmedText = truncateByCharacters(text, count);
     }
   }
-  return trimmedText
+  return trimmedText;
 };
 
 const truncateByCharacters = (text = '', count) => {
