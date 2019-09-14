@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.12] - 2019-09-15
+### Added
+- ESLint with standard extension
+
+### Changed
+- Parameter order of text trimming function so it goes; text, count, truncate by
+- Code styling as per new ESLint settings
+
+### Fixed
+- Additional ellipsis being added to text in component
+
+### Removed
+- StandardJS as linter/formatter command
+
 ## [0.0.11] - 2019-09-13
 ### Added
 - StandardJS library for linting/formatting
