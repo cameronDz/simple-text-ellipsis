@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.12] - 2019-09-15
+## [0.0.13] - 2019-09-14
+### Changed
+- README examples line lenght to be under 80 characters
+
+## [0.0.12] - 2019-09-14
 ### Added
 - NYC test coverage report for mocha tests
 - ESLint with standard extension
