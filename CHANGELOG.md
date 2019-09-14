@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.12] - 2019-09-15
 ### Added
+- NYC test coverage report for mocha tests
 - ESLint with standard extension
+- Badges for NPM and ESLint
 
 ### Changed
 - Parameter order of text trimming function so it goes; text, count, truncate by

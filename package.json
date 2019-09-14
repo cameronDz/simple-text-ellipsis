@@ -32,6 +32,7 @@
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
     "react-dom": "^16.9.0",
     "react-test-renderer": "^16.9.0",
     "webpack-cli": "^3.3.8"
@@ -70,7 +71,7 @@
     "build": "webpack --config webpack/config.js",
     "lint": "eslint ./src",
     "start": "webpack --watch --config webpack/config.js",
-    "test": "mocha --require @babel/register --reqire jsdom-global/register"
+    "test": "nyc mocha --require @babel/register --reqire jsdom-global/register"
   },
   "version": "0.0.12"
 }
