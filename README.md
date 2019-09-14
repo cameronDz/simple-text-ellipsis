@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/simple-text-ellipsis.svg)](https://badge.fury.io/js/simple-text-ellipsis) ![coverage](https://img.shields.io/badge/java%20code%20coverage-92.6%25-blue.svg) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+[![npm version](https://badge.fury.io/js/simple-text-ellipsis.svg)](https://badge.fury.io/js/simple-text-ellipsis) ![coverage](https://img.shields.io/badge/code%20coverage-92.6%25-blue) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 # Simple-Text-Ellipsis #
 
