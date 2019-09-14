@@ -17,17 +17,23 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.0",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
     "react-dom": "^16.9.0",
     "react-test-renderer": "^16.9.0",
-    "standard": "^14.2.0",
     "webpack-cli": "^3.3.8"
   },
   "files": [
@@ -62,12 +68,9 @@
   },
   "scripts": {
     "build": "webpack --config webpack/config.js",
-    "standard": "standard",
+    "lint": "eslint ./src",
     "start": "webpack --watch --config webpack/config.js",
     "test": "mocha --require @babel/register --reqire jsdom-global/register"
-  },
-  "standard": {
-    "env": [ "mocha" ]
   },
   "version": "0.0.11"
 }
