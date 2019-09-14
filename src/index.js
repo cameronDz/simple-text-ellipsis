@@ -27,10 +27,7 @@ const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
 
   const createTextWithEllipsis = trimCount => {
     const trimmedText = trimTextByCount(text, trimCount, truncateBy);
-    return !! trimmedText && (
-      <Fragment>
-        {trimmedText}
-      </Fragment>);
+    return !! trimmedText && trimmedText;
   };
 
   const createHiddenGrid = () => {
@@ -41,7 +38,7 @@ const simpleEllipsis = ({count, gridCounts, text, truncateBy}) => {
         : count;
       return (
         <Hidden key={key} only={only}>
-          {createTextWithEllipsis(gridCount)}...
+          {createTextWithEllipsis(gridCount)}
         </Hidden>)
     });
   };
