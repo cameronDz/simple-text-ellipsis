@@ -1,4 +1,4 @@
-const trimTextByCount = (text = '', truncateBy = '', count) => {
+const trimTextByCount = (text = '', count = 0, truncateBy = '') => {
   let trimmedText = '';
   if (!!text && typeof text === 'string') {
     if (truncateBy === 'words') {
