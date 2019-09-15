@@ -1,42 +1,42 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount } from 'enzyme'
+import { mount } from 'enzyme';
 import SimpleEllipsis from '../src/index';
 
-describe('component tests', () => {
-  describe('# simple ellipsis tests', () => {
-    it('should render ellipsis with text prop and count less than text length', () => {
+describe('component tests', function () {
+  describe('# simple ellipsis tests', function () {
+    it('should render ellipsis with text prop and count less than text length', function () {
       const wrap = mount(<SimpleEllipsis text='TEXT_TEXT' count={5} />);
       const html = wrap.html();
       expect(html.indexOf('TEXT_...') !== -1).to.equal(true);
     });
 
-    it('should NOT render ellipsis with text prop and no count', () => {
+    it('should NOT render ellipsis with text prop and no count', function () {
       const wrap = mount(<SimpleEllipsis text='TEXT' />);
       const html = wrap.html();
       expect(html.indexOf('...') === -1).to.equal(true);
     });
 
-    it('should NOT render without text prop', () => {
+    it('should NOT render without text prop', function () {
       const wrap = mount(<SimpleEllipsis />);
       const html = wrap.html();
       expect(!!html).to.equal(false);
     });
 
-    it('should NOT render with text prop of empty string', () => {
+    it('should NOT render with text prop of empty string', function () {
       const wrap = mount(<SimpleEllipsis text='' />);
       const html = wrap.html();
       expect(!!html).to.equal(false);
     });
 
-    it('should render all 5 words with no ellipsis', () => {
+    it('should render all 5 words with no ellipsis', function () {
       const text = 'This should NOT have ellipsis';
       const wrap = mount(<SimpleEllipsis count={5} text={text} truncateBy='words' />);
       const html = wrap.html();
       expect(html).to.equal(text);
     });
 
-    it('should render ellipsis after 6 words', () => {
+    it('should render ellipsis after 6 words', function () {
       const expected = 'This should have an ellipsis but...';
       const text = 'This should have an ellipsis but check';
       const wrap = mount(<SimpleEllipsis count={6} text={text} truncateBy='words' />);
