@@ -44,7 +44,7 @@ const simpleEllipsis = ({ count, gridCounts, text, truncateBy }) => {
   };
 
   const createEllipsis = () => {
-    return !!gridCounts
+    return gridCounts
       ? createHiddenGrid()
       : createTextWithEllipsis(count);
   };

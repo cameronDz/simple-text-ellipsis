@@ -27,6 +27,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
     "jsdom": "^15.1.1",
@@ -69,9 +70,10 @@
   },
   "scripts": {
     "build": "webpack --config webpack/config.js",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src ./webpack",
+    "lint-fix": "eslint --fix ./src ./webpack",
     "start": "webpack --watch --config webpack/config.js",
     "test": "nyc mocha --require @babel/register --reqire jsdom-global/register"
   },
-  "version": "0.0.14"
+  "version": "0.0.15"
 }
