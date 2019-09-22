@@ -1,51 +1,52 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { removeValueFromArray, trimTextByCount } from './lib';
+import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByCount } from './lib';
 
 const propTypes = {
-  count: PropTypes.number,
-  gridCounts: PropTypes.shape({
-    xs: PropTypes.number,
-    sm: PropTypes.number,
-    md: PropTypes.number,
-    lg: PropTypes.number,
-    xl: PropTypes.number
+  breakpoints: PropTypes.shape({
+    xs: PropTypes.object,
+    sm: PropTypes.object,
+    md: PropTypes.object,
+    lg: PropTypes.object,
+    xl: PropTypes.object
   }),
+  count: PropTypes.number,
   text: PropTypes.string,
   truncateBy: PropTypes.string
 };
 
 /**
  * @param {*} count Number
- * @param {*} gridCounts Object
+ * @param {*} breakpoints Object
  * @param {*} text String
  * @param {*} truncateBy String
  */
-const simpleEllipsis = ({ count, gridCounts, text, truncateBy }) => {
-  const gridSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+const simpleEllipsis = ({ count, breakpoints, text, truncateBy }) => {
+  const breakpointSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   const createTextWithEllipsis = trimCount => {
     const trimmedText = trimTextByCount(text, trimCount, truncateBy);
     return !!trimmedText && trimmedText;
   };
 
-  const createHiddenGrid = () => {
-    return gridSizes.map((item, key) => {
-      const only = removeValueFromArray(gridSizes, item);
-      const gridCount = !!gridCounts && !!gridCounts[item]
-        ? gridCounts[item]
+  const createTextWithEllipsisBasedOnBreakpoints = () => {
+    return breakpointSizes.map((item, key) => {
+      const only = removeValueFromArray(breakpointSizes, item);
+      const breakpointValue = extractKeyFromBreakpointObject(breakpoints, item, 'count');
+      const textCount = !!breakpointValue || breakpointValue === 0
+        ? breakpointValue
         : count;
       return (
         <Hidden key={key} only={only}>
-          {createTextWithEllipsis(gridCount)}
+          {createTextWithEllipsis(textCount)}
         </Hidden>);
     });
   };
 
   const createEllipsis = () => {
-    return gridCounts
-      ? createHiddenGrid()
+    return !!breakpoints && Object.keys(breakpoints).length > 0
+      ? createTextWithEllipsisBasedOnBreakpoints()
       : createTextWithEllipsis(count);
   };
 

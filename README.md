@@ -22,11 +22,11 @@ import SimpleEllipsis from 'simple-text-ellipsis';
 const yourComponent = () => {
   const text = 'This is an example of using SimpleEllipsis component';
   const count = 15;
-  const gridCounts = {
-    lg: 20, // 'This is an example o...' displays at lg break point
-    xl: 30  // 'This is an example of using Si...' displays at xl break point
-  };        // 'This is an exam...' will display for all other break points
-            //    since count prop is specified
+  const breakpoints = {
+    lg: { count: 20 }, // 'This is an example o...' displays at lg break point
+    xl: { count: 30 }  // 'This is an example of using Si...' at xl break point
+  }; // 'This is an exam...' will display for all other break points since
+     //   count prop is specified
   const propsObject = { count, gridCount, text };
   return (
       <React.Fragment>
@@ -44,11 +44,11 @@ import SimpleEllipsis from 'simple-text-ellipsis';
 const yourComponent = () => {
   const text = 'This is an example of using SimpleEllipsis component';
   const truncatedBy = 'words';
-  const gridCounts = {
-    xs: 3, // at xs break point, displays 'This is an...'
-    sm: 6  // at xs break point, displays 'This is an example of using...'
-  };       // will display entire text string for all other breakpoints
-           //    since no count prop is specified
+  const breakpoints = {
+    xs: { count: 3 }, // at xs break point, displays 'This is an...'
+    sm: { count: 6 }  // at sm, displays 'This is an example of using...'
+  }; // will display entire text string for all other breakpoints  since no
+     //   count prop is specified
   const propsObject = { gridCount, text, truncatedBy };
   return (
       <React.Fragment>
@@ -60,12 +60,12 @@ export default yourComponent;
 
 ### Props
 - ```count``` number: character/word count to cut text off at; when not provided, text will not be truncated
-- ```gridCounts``` object: counts for specific [Material UI breakpoints](https://material-ui.com/customization/breakpoints/)
-  - ```gridCounts.xs``` number
-  - ```gridCounts.sm``` number
-  - ```gridCounts.md``` number
-  - ```gridCounts.lg``` number
-  - ```gridCounts.xl``` number
+- ```breakpoints``` object: breakpoints for specific [Material UI breakpoints](https://material-ui.com/customization/breakpoints/)
+  - ```breakpoints.xs``` object: contains count key to override default prop of count
+  - ```breakpoints.sm``` object
+  - ```breakpoints.md``` object
+  - ```breakpoints.lg``` object
+  - ```breakpoints.xl``` object
 - ```text``` string: text to be displayed with ellipsis at end
 - ```truncatedBy``` string: determing how count is used to truncate text; 'characters' or 'words'. defaults to 'characters'
 

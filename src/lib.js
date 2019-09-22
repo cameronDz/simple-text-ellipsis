@@ -1,3 +1,11 @@
+const extractKeyFromBreakpointObject = (breakpoints = {}, point = '', key = '') => {
+  let value = null;
+  if (!!breakpoints && !!point && !!key && breakpoints[point]) {
+    value = breakpoints[point][key];
+  }
+  return value;
+};
+
 const trimTextByCount = (text = '', count = 0, truncateBy = '') => {
   let trimmedText = '';
   if (!!text && typeof text === 'string') {
@@ -42,6 +50,7 @@ const removeValueFromArray = (array, value) => {
 };
 
 export {
+  extractKeyFromBreakpointObject,
   removeValueFromArray,
   trimTextByCount
 };

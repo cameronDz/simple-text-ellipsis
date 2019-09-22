@@ -1,6 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import { createMount } from '@material-ui/core/test-utils';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import SimpleEllipsis from '../src/index';
 
 describe('component tests', function () {
@@ -40,6 +42,20 @@ describe('component tests', function () {
       const expected = 'This should have an ellipsis but...';
       const text = 'This should have an ellipsis but check';
       const wrap = mount(<SimpleEllipsis count={6} text={text} truncateBy='words' />);
+      const html = wrap.html();
+      expect(html).to.equal(expected);
+    });
+  });
+  describe('# simple ellipsis breakpoint tests', function () {
+    const breakpoints = { xs: { count: 3 } };
+    it('should render ellipsis after 6 words', function () {
+      const expected = 'This should have...';
+      const text = 'This should have an ellipsis but check';
+      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'xs' } } });
+      const wrap = createMount()(
+        <MuiThemeProvider theme={theme}>
+          <SimpleEllipsis count={6} breakpoints={breakpoints} text={text} truncateBy='words' />
+        </MuiThemeProvider>);
       const html = wrap.html();
       expect(html).to.equal(expected);
     });

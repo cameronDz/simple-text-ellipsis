@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-09-22
+### Added
+- Add test for using MUI Hidden components
+
+### Changed
+- Instead of using a gridCount prop object for different MUI breakpoint counts, have an optional breakpoints prop object with each breakpoint name as an option object to override all other props when at that breakpoint size
+
+### Fixed
+- Add linting to mocha tests and run fix on tests
+
 ## [0.0.15] - 2019-09-15
 ### Fixed
 - Issues with ESLint and React and unneccessary boolean cast
