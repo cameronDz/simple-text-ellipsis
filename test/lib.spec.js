@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { removeValueFromArray, trimTextByCount } from '../src/lib';
+import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByCount } from '../src/lib';
 
 describe('lib tests', function () {
   describe('# trimTextByCount', function () {
@@ -109,6 +109,55 @@ describe('lib tests', function () {
       const original = [23, 'Dog', 3, value, { bird: 'gird' }, 'TESTING'];
       const expected = [23, 'Dog', 3, { bird: 'gird' }, 'TESTING'];
       const actual = removeValueFromArray(original, value);
+      expect(actual).to.eql(expected);
+    });
+  });
+
+  describe('# extractKeyFromBreakpointObject', function () {
+    it('null breakpoints object - return null', function () {
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(null, 'test', 'test');
+      expect(actual).to.eql(expected);
+    });
+
+    it('undefined breakpoints object - return null', function () {
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(undefined, 'test', 'test');
+      expect(actual).to.eql(expected);
+    });
+
+    it('null point variable - return null', function () {
+      const original = { test: { test: 'someValue' } };
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(original, null, 'test');
+      expect(actual).to.eql(expected);
+    });
+
+    it('undefined point variable - return null', function () {
+      const original = { test: { test: 'someValue' } };
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(original, undefined, 'test');
+      expect(actual).to.eql(expected);
+    });
+
+    it('undefined key variable - return null', function () {
+      const original = { test: { test: 'someValue' } };
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(original, 'test', undefined);
+      expect(actual).to.eql(expected);
+    });
+
+    it('null key variable - return null', function () {
+      const original = { test: { test: 'someValue' } };
+      const expected = null;
+      const actual = extractKeyFromBreakpointObject(original, 'test', null);
+      expect(actual).to.eql(expected);
+    });
+
+    it('valid breakpoints object - return objects key value', function () {
+      const original = { test: { test: 'someValue' } };
+      const expected = 'someValue';
+      const actual = extractKeyFromBreakpointObject(original, 'test', 'test');
       expect(actual).to.eql(expected);
     });
   });

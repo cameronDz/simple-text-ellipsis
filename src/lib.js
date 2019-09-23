@@ -31,7 +31,7 @@ const truncateByWords = (text = '', count) => {
     : text;
 };
 
-const createTruncatedTextFromArray = (array) => {
+const createTruncatedTextFromArray = array => {
   let text = '';
   if (Array.isArray(array)) {
     array.map((item, key) => {
