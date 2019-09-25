@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-09-25
+### Added
+- Optional prop, allowShortenedWords, defaults to true. Passing false when truncating by characters will make it so no words are cut in order to stay within character count of truncation.
+
 ## [1.0.0] - 2019-09-22
 ### Added
 - Add test for using MUI Hidden components

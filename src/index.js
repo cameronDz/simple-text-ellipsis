@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByCount } from './lib';
 
 const propTypes = {
+  allowShortenedWords: PropTypes.bool,
   breakpoints: PropTypes.shape({
     xs: PropTypes.object,
     sm: PropTypes.object,
@@ -17,16 +18,17 @@ const propTypes = {
 };
 
 /**
+ * @param {*} allowShortenedWords boolean
  * @param {*} count Number
  * @param {*} breakpoints Object
  * @param {*} text String
  * @param {*} truncateBy String
  */
-const simpleEllipsis = ({ count, breakpoints, text, truncateBy }) => {
+const simpleEllipsis = ({ allowShortenedWords, breakpoints, count, text, truncateBy }) => {
   const breakpointSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   const createTextWithEllipsis = trimCount => {
-    const trimmedText = trimTextByCount(text, trimCount, truncateBy);
+    const trimmedText = trimTextByCount(text, trimCount, truncateBy, allowShortenedWords);
     return !!trimmedText && trimmedText;
   };
 

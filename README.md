@@ -59,13 +59,14 @@ export default yourComponent;
 ```
 
 ### Props
-- ```count``` number: character/word count to cut text off at; when not provided, text will not be truncated
+- ```allowShortenedWords``` boolean: when truncating by characters, allow cutting off words. default true
 - ```breakpoints``` object: breakpoints for specific [Material UI breakpoints](https://material-ui.com/customization/breakpoints/)
   - ```breakpoints.xs``` object: contains count key to override default prop of count
   - ```breakpoints.sm``` object
   - ```breakpoints.md``` object
   - ```breakpoints.lg``` object
   - ```breakpoints.xl``` object
+- ```count``` number: character/word count to cut text off at; when not provided, text will not be truncated
 - ```text``` string: text to be displayed with ellipsis at end
 - ```truncatedBy``` string: determing how count is used to truncate text; 'characters' or 'words'. defaults to 'characters'
 

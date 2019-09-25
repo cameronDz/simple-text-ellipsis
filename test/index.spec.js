@@ -45,6 +45,14 @@ describe('component tests', function () {
       const html = wrap.html();
       expect(html).to.equal(expected);
     });
+
+    it('should render ellipsis after 20 chars cut by words words', function () {
+      const expected = 'This should have an...';
+      const text = 'This should have an ellipsis but check';
+      const wrap = mount(<SimpleEllipsis allowShortenedWords={false} count={20} text={text} />);
+      const html = wrap.html();
+      expect(html).to.equal(expected);
+    });
   });
   describe('# simple ellipsis breakpoint tests', function () {
     const breakpoints = { xs: { count: 3 } };
