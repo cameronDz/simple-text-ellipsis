@@ -1,80 +1,107 @@
 import { expect } from 'chai';
-import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByCount } from '../src/lib';
+import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByTrimObject } from '../src/lib';
 
 describe('lib tests', function () {
-  describe('# trimTextByCount', function () {
+  describe('# trimTextByTrimObject', function () {
     it('no params provide - returns empty string', function () {
       const expected = '';
-      const actual = trimTextByCount();
+      const actual = trimTextByTrimObject();
       expect(actual).to.equal(expected);
     });
 
     it('falsy (NaN) text params provide - returns empty string', function () {
+      const trimTextObject = { text: NaN };
       const expected = '';
-      const actual = trimTextByCount(NaN);
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('falsy (null) text params provide - returns empty string', function () {
+      const trimTextObject = { text: null };
       const expected = '';
-      const actual = trimTextByCount(null);
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('only valid text params provide - returns text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected);
+      const trimTextObject = { text: expected };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, falsy (NaN) count param, no truncateBy param - returns text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected, NaN);
+      const trimTextObject = { count: NaN, text: expected };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, falsy (null) count param, no truncateBy param - returns text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected, null);
+      const trimTextObject = { count: null, text: expected };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, count param greater than text conut, no truncateBy param - returns full text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected, 40);
+      const trimTextObject = { count: 40, text: expected };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, count param less than text conut, no truncateBy param - returns substring of text', function () {
       const original = 'This is expected';
       const expected = 'This...';
-      const actual = trimTextByCount(original, 4);
+      const trimTextObject = { count: 4, text: original };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, count param less than text conut, random truncateBy param - returns substring of text truncated by chars', function () {
       const original = 'This is expected';
       const expected = 'This...';
-      const actual = trimTextByCount(original, 4, 'random');
+      const trimTextObject = { count: 4, text: original, truncateBy: 'random' };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, invalid count param, truncateBy param is words, returns full text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected, NaN, 'words');
+      const trimTextObject = { count: NaN, text: expected, truncateBy: 'words' };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, count NOT longer than text word count, truncateBy param is words, returns full text', function () {
       const expected = 'This is expected';
-      const actual = trimTextByCount(expected, 4, 'words');
+      const trimTextObject = { count: 4, text: expected, truncateBy: 'words' };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
 
     it('valid text params provide, count longer than text word count, truncateBy param is words, returns truncated text', function () {
       const original = 'This is expected should not be this long';
       const expected = 'This is expected should...';
-      const actual = trimTextByCount(original, 4, 'words');
+      const trimTextObject = { count: 4, text: original, truncateBy: 'words' };
+      const actual = trimTextByTrimObject(trimTextObject);
+      expect(actual).to.equal(expected);
+    });
+
+    it('valid text key, count longer than text word count, truncateBy key words, unique ellipsis key, returns truncated text', function () {
+      const original = 'This is expected should not be this long';
+      const expected = 'This is expected should***';
+      const trimTextObject = { count: 4, ellipsis: '***', text: original, truncateBy: 'words' };
+      const actual = trimTextByTrimObject(trimTextObject);
+      expect(actual).to.equal(expected);
+    });
+
+    it('valid text key, count longer than text word count, truncateBy key is words, null ellipsis key, returns truncated text without ellipsis', function () {
+      const original = 'This is expected should not be this long';
+      const expected = 'This is expected should';
+      const trimTextObject = { count: 4, ellipsis: null, text: original, truncateBy: 'words' };
+      const actual = trimTextByTrimObject(trimTextObject);
       expect(actual).to.equal(expected);
     });
   });

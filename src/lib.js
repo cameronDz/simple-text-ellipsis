@@ -6,30 +6,41 @@ const extractKeyFromBreakpointObject = (breakpoints = {}, point = '', key = '') 
   return value;
 };
 
-const trimTextByCount = (text = '', count = 0, truncateBy = '', allowShortenedWords = true) => {
+const trimTextByTrimObject = (trimTextObject = {}) => {
   let trimmedText = '';
-  if (!!text && typeof text === 'string') {
-    if (truncateBy === 'words') {
-      trimmedText = truncateByWords(text, count);
+  if (!!trimTextObject.text && typeof trimTextObject.text === 'string') {
+    if (trimTextObject.truncateBy === 'words') {
+      trimmedText = truncateByWords(trimTextObject);
     } else {
-      trimmedText = truncateByCharacters(text, count, allowShortenedWords);
+      trimmedText = truncateByCharacters(trimTextObject);
     }
   }
   return trimmedText;
 };
 
-const truncateByCharacters = (text = '', count, allowShortenedWords = true) => {
+const truncateByCharacters = (trimTextObject = {}) => {
+  const { allowShortenedWords, count, ellipsis, text } = trimTextObject;
   let truncatedText = text;
   if (!!count && count > 0 && text.length > count) {
-    if (allowShortenedWords) {
+    if (allowShortenedWords !== false) {
       truncatedText = text.substring(0, count);
     } else {
       truncatedText = truncateTextWithoutShorteningWords(text, count);
     }
-    truncatedText += '...';
+    truncatedText += addEllipsis(ellipsis);
   }
   return truncatedText;
 };
+
+const addEllipsis = (ellipsis = '') => {
+  let textEllipsis = '...';
+  if (ellipsis === null) {
+    textEllipsis = '';
+  } else if (ellipsis) {
+    textEllipsis = ellipsis;
+  }
+  return textEllipsis;
+}
 
 const truncateTextWithoutShorteningWords = (text = '', count = 0) => {
   let truncatedText = '';
@@ -48,10 +59,11 @@ const truncateTextWithoutShorteningWords = (text = '', count = 0) => {
   return truncatedText;
 };
 
-const truncateByWords = (text = '', count) => {
-  const words = text.split(' ');
+const truncateByWords = (trimTextObject = {}) => {
+  const { count, ellipsis, text } = trimTextObject;
+  const words = !!text && typeof text.split === 'function' && text.split(' ');
   return !!count && count > 0 && words.length > count
-    ? createTruncatedTextFromArray(words.slice(0, count)) + '...'
+    ? createTruncatedTextFromArray(words.slice(0, count)) + addEllipsis(ellipsis)
     : text;
 };
 
@@ -76,5 +88,5 @@ const removeValueFromArray = (array, value) => {
 export {
   extractKeyFromBreakpointObject,
   removeValueFromArray,
-  trimTextByCount
+  trimTextByTrimObject
 };

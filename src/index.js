@@ -1,7 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByCount } from './lib';
+import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByTrimObject } from './lib';
 
 const propTypes = {
   allowShortenedWords: PropTypes.bool,
@@ -13,22 +13,25 @@ const propTypes = {
     xl: PropTypes.object
   }),
   count: PropTypes.number,
+  ellipsis: PropTypes.string,
   text: PropTypes.string,
   truncateBy: PropTypes.string
 };
 
 /**
  * @param {*} allowShortenedWords boolean
- * @param {*} count Number
  * @param {*} breakpoints Object
+ * @param {*} count Number
+ * @param {*} ellipsis String
  * @param {*} text String
  * @param {*} truncateBy String
  */
-const simpleEllipsis = ({ allowShortenedWords, breakpoints, count, text, truncateBy }) => {
+const simpleEllipsis = ({ allowShortenedWords, breakpoints, count, ellipsis, text, truncateBy }) => {
   const breakpointSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   const createTextWithEllipsis = trimCount => {
-    const trimmedText = trimTextByCount(text, trimCount, truncateBy, allowShortenedWords);
+    const trimObject = { allowShortenedWords, ellipsis, text, truncateBy, count: trimCount };
+    const trimmedText = trimTextByTrimObject(trimObject);
     return !!trimmedText && trimmedText;
   };
 

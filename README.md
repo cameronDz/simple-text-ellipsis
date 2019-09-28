@@ -67,6 +67,7 @@ export default yourComponent;
   - ```breakpoints.lg``` object
   - ```breakpoints.xl``` object
 - ```count``` number: character/word count to cut text off at; when not provided, text will not be truncated
+- ```ellipsis``` string: text to be displayed as ellipsis; defaults to '...', no ellipsis displayed if passed as null
 - ```text``` string: text to be displayed with ellipsis at end
 - ```truncatedBy``` string: determing how count is used to truncate text; 'characters' or 'words'. defaults to 'characters'
 
