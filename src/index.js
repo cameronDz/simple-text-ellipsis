@@ -1,7 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { extractKeyFromBreakpointObject, removeValueFromArray, trimTextByTrimObject } from './lib';
+import * as lib from './lib';
 
 const propTypes = {
   allowShortenedWords: PropTypes.bool,
@@ -29,22 +29,19 @@ const propTypes = {
 const simpleEllipsis = ({ allowShortenedWords, breakpoints, count, ellipsis, text, truncateBy }) => {
   const breakpointSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-  const createTextWithEllipsis = trimCount => {
-    const trimObject = { allowShortenedWords, ellipsis, text, truncateBy, count: trimCount };
-    const trimmedText = trimTextByTrimObject(trimObject);
+  const createTextWithEllipsis = breakpointObject => {
+    const baseObject = { allowShortenedWords, count, ellipsis, text, truncateBy };
+    const mergedObject = lib.mergeTrimObjectFromBreakpointObject(baseObject, breakpointObject);
+    const trimmedText = lib.trimTextByTrimObject(mergedObject);
     return !!trimmedText && trimmedText;
   };
 
   const createTextWithEllipsisBasedOnBreakpoints = () => {
     return breakpointSizes.map((item, key) => {
-      const only = removeValueFromArray(breakpointSizes, item);
-      const breakpointValue = extractKeyFromBreakpointObject(breakpoints, item, 'count');
-      const textCount = !!breakpointValue || breakpointValue === 0
-        ? breakpointValue
-        : count;
+      const only = lib.removeValueFromArray(breakpointSizes, item);
       return (
         <Hidden key={key} only={only}>
-          {createTextWithEllipsis(textCount)}
+          {createTextWithEllipsis(breakpoints[item])}
         </Hidden>);
     });
   };
@@ -52,7 +49,7 @@ const simpleEllipsis = ({ allowShortenedWords, breakpoints, count, ellipsis, tex
   const createEllipsis = () => {
     return !!breakpoints && Object.keys(breakpoints).length > 0
       ? createTextWithEllipsisBasedOnBreakpoints()
-      : createTextWithEllipsis(count);
+      : createTextWithEllipsis();
   };
 
   return !!text && createEllipsis();

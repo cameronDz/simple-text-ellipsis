@@ -6,6 +6,28 @@ const extractKeyFromBreakpointObject = (breakpoints = {}, point = '', key = '') 
   return value;
 };
 
+const mergeTrimObjectFromBreakpointObject = (baseObject = {}, breakpointObject = {}) => {
+  let mergedObject = {};
+  const validBreakpointObject = validObject(breakpointObject);
+  if (validObject(baseObject)) {
+    mergedObject = baseObject;
+    if (validBreakpointObject) {
+      mergedObject.allowShortenedWords = typeof breakpointObject.allowShortenedWords !== 'undefined' ? breakpointObject.allowShortenedWords : baseObject.allowShortenedWords;
+      mergedObject.count = typeof breakpointObject.count !== 'undefined' ? breakpointObject.count : baseObject.count;
+      mergedObject.ellipsis = typeof breakpointObject.ellipsis !== 'undefined' ? breakpointObject.ellipsis : baseObject.ellipsis;
+      mergedObject.text = typeof breakpointObject.text !== 'undefined' ? breakpointObject.text : baseObject.text;
+      mergedObject.truncateBy = typeof breakpointObject.truncateBy !== 'undefined' ? breakpointObject.truncateBy : baseObject.truncateBy;
+    }
+  } else if (validBreakpointObject) {
+    mergedObject = breakpointObject;
+  }
+  return mergedObject;
+};
+
+const validObject = objectBeingTested => {
+  return !!objectBeingTested && typeof objectBeingTested === 'object';
+};
+
 const trimTextByTrimObject = (trimTextObject = {}) => {
   let trimmedText = '';
   if (!!trimTextObject && typeof trimTextObject === 'object' && typeof trimTextObject.text === 'string') {
@@ -97,6 +119,7 @@ const removeValueFromArray = (array, value) => {
 export {
   createTruncatedTextFromArray,
   extractKeyFromBreakpointObject,
+  mergeTrimObjectFromBreakpointObject,
   removeValueFromArray,
   truncateByCharacters,
   trimTextByTrimObject,

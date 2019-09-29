@@ -264,4 +264,48 @@ describe('lib tests', function () {
       expect(actual).to.eql(expected);
     });
   });
+
+  describe('# mergeTrimObjectFromBreakpointObject', function () {
+    it('undefined first param object with defined second param - returns second param with missing keys as undefined', function () {
+      const firstParam = undefined;
+      const secondParam = { count: 4 };
+      const actual = lib.mergeTrimObjectFromBreakpointObject(firstParam, secondParam);
+      const expected = { allowShortenedWords: undefined, count: 4, ellipsis: undefined, text: undefined, truncateBy: undefined };
+      expect(actual).to.eql(expected);
+    });
+
+    it('null first param object with defined second param - returns second param', function () {
+      const firstParam = null;
+      const expected = { count: 4 };
+      const actual = lib.mergeTrimObjectFromBreakpointObject(firstParam, expected);
+      expect(actual).to.eql(expected);
+    });
+
+    it('missing params - returns new object with all undefined params', function () {
+      const actual = lib.mergeTrimObjectFromBreakpointObject();
+      const expected = { allowShortenedWords: undefined, count: undefined, ellipsis: undefined, text: undefined, truncateBy: undefined };
+      expect(actual).to.eql(expected);
+    });
+
+    it('undefined first param, null second param - returns new object with no keys', function () {
+      const actual = lib.mergeTrimObjectFromBreakpointObject(undefined, null);
+      const expected = {};
+      expect(actual).to.eql(expected);
+    });
+
+    it('null first param object with fully defined second param - returns second param', function () {
+      const firstParam = {};
+      const expected = { allowShortenedWords: false, count: 4, ellipsis: '---', text: 'dog', truncateBy: 'words' };
+      const actual = lib.mergeTrimObjectFromBreakpointObject(firstParam, expected);
+      expect(actual).to.eql(expected);
+    });
+
+    it('both null params - return empty object', function () {
+      const firstParam = null;
+      const secondParam = null;
+      const expected = {};
+      const actual = lib.mergeTrimObjectFromBreakpointObject(firstParam, secondParam);
+      expect(actual).to.eql(expected);
+    });
+  });
 });

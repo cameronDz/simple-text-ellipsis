@@ -54,15 +54,29 @@ describe('component tests', function () {
       expect(html).to.equal(expected);
     });
   });
+
   describe('# simple ellipsis breakpoint tests', function () {
-    const breakpoints = { xs: { count: 3 } };
     it('should render ellipsis after 6 words', function () {
+      const breakpoints = { xs: { count: 3 } };
       const expected = 'This should have...';
       const text = 'This should have an ellipsis but check';
       const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'xs' } } });
       const wrap = createMount()(
         <MuiThemeProvider theme={theme}>
           <SimpleEllipsis count={6} breakpoints={breakpoints} text={text} truncateBy='words' />
+        </MuiThemeProvider>);
+      const html = wrap.html();
+      expect(html).to.equal(expected);
+    });
+
+    it('should render unique ellipsis after 20 charcters', function () {
+      const breakpoints = { md: { count: 20, ellipsis: '***' } };
+      const expected = 'This should have an ***';
+      const text = 'This should have an ellipsis but check';
+      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } });
+      const wrap = createMount()(
+        <MuiThemeProvider theme={theme}>
+          <SimpleEllipsis count={5} breakpoints={breakpoints} text={text} />
         </MuiThemeProvider>);
       const html = wrap.html();
       expect(html).to.equal(expected);
