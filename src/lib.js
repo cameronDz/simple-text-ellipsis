@@ -8,7 +8,7 @@ const extractKeyFromBreakpointObject = (breakpoints = {}, point = '', key = '') 
 
 const trimTextByTrimObject = (trimTextObject = {}) => {
   let trimmedText = '';
-  if (!!trimTextObject.text && typeof trimTextObject.text === 'string') {
+  if (!!trimTextObject && typeof trimTextObject === 'object' && typeof trimTextObject.text === 'string') {
     if (trimTextObject.truncateBy === 'words') {
       trimmedText = truncateByWords(trimTextObject);
     } else {
@@ -19,15 +19,18 @@ const trimTextByTrimObject = (trimTextObject = {}) => {
 };
 
 const truncateByCharacters = (trimTextObject = {}) => {
-  const { allowShortenedWords, count, ellipsis, text } = trimTextObject;
-  let truncatedText = text;
-  if (!!count && count > 0 && text.length > count) {
-    if (allowShortenedWords !== false) {
-      truncatedText = text.substring(0, count);
-    } else {
-      truncatedText = truncateTextWithoutShorteningWords(text, count);
+  let truncatedText = '';
+  if (!!trimTextObject && typeof trimTextObject === 'object' && typeof trimTextObject.text === 'string') {
+    const { allowShortenedWords, count, ellipsis, text } = trimTextObject;
+    truncatedText = text;
+    if (!!count && count > 0 && text.length > count) {
+      if (allowShortenedWords !== false) {
+        truncatedText = text.substring(0, count);
+      } else {
+        truncatedText = truncateTextWithoutShorteningWords(text, count);
+      }
+      truncatedText += addEllipsis(ellipsis);
     }
-    truncatedText += addEllipsis(ellipsis);
   }
   return truncatedText;
 };
@@ -40,7 +43,7 @@ const addEllipsis = (ellipsis = '') => {
     textEllipsis = ellipsis;
   }
   return textEllipsis;
-}
+};
 
 const truncateTextWithoutShorteningWords = (text = '', count = 0) => {
   let truncatedText = '';
@@ -60,11 +63,17 @@ const truncateTextWithoutShorteningWords = (text = '', count = 0) => {
 };
 
 const truncateByWords = (trimTextObject = {}) => {
-  const { count, ellipsis, text } = trimTextObject;
-  const words = !!text && typeof text.split === 'function' && text.split(' ');
-  return !!count && count > 0 && words.length > count
-    ? createTruncatedTextFromArray(words.slice(0, count)) + addEllipsis(ellipsis)
-    : text;
+  let text = '';
+  if (!!trimTextObject && !!trimTextObject.text && typeof trimTextObject.text === 'string') {
+    const { count, ellipsis } = trimTextObject;
+    const words = trimTextObject.text.split(' ');
+    if (!!count && count > 0 && words.length > count) {
+      text = createTruncatedTextFromArray(words.slice(0, count)) + addEllipsis(ellipsis);
+    } else {
+      text = trimTextObject.text;
+    }
+  }
+  return text;
 };
 
 const createTruncatedTextFromArray = array => {
@@ -86,7 +95,11 @@ const removeValueFromArray = (array, value) => {
 };
 
 export {
+  createTruncatedTextFromArray,
   extractKeyFromBreakpointObject,
   removeValueFromArray,
-  trimTextByTrimObject
+  truncateByCharacters,
+  trimTextByTrimObject,
+  truncateByWords,
+  truncateTextWithoutShorteningWords
 };
