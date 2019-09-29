@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More complete null/value checks in lib
 - Full test coverage on lib
 
+### Fixed
+- Update version of handlebars package flagged as npm vulnerability
+
 ## [1.2.0] - 2019-09-28
 ### Added
 - Ellipsis prop to change what follows the truncated text. Will default to '...', original ellipsis.
