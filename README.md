@@ -27,7 +27,7 @@ const yourComponent = () => {
     xl: { count: 30 }  // 'This is an example of using Si...' at xl break point
   }; // 'This is an exam...' will display for all other break points since
      //   count prop is specified
-  const propsObject = { count, gridCount, text };
+  const propsObject = { breakpoints, count, text };
   return (
       <React.Fragment>
         <SimpleEllipsis {...propsObject} />
@@ -47,9 +47,9 @@ const yourComponent = () => {
   const breakpoints = {
     xs: { count: 3 }, // at xs break point, displays 'This is an...'
     sm: { count: 6 }  // at sm, displays 'This is an example of using...'
-  }; // will display entire text string for all other breakpoints  since no
+  }; // will display entire text string for all other breakpoints since no
      //   count prop is specified
-  const propsObject = { gridCount, text, truncatedBy };
+  const propsObject = { breakpoints, text, truncatedBy };
   return (
       <React.Fragment>
         <SimpleEllipsis {...propsObject} />
