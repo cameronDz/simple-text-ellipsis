@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2019-10-20
+### Fixed
+- Set mode to be production on build so index file size shrinks by about 20%
+
 ## [1.3.0] - 2019-09-29
 ### Added
 - Can pass count, as well as allowShortenedWords, ellipsis, text, and truncatedBy in each breakpoint to override the base props when present.
