@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2020-08-02
+### Fixed
+- Patch version vulnerablity updates for ellipsis and lodash packages
+
 ## [1.3.2] - 2020-03-21
 ### Fixed
 - Minor/patch version of vulnerale dependencies, and major version of some children dependencies of dependencies
