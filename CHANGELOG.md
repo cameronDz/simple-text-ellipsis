@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Security update: ptch version bump to yargs-parser package
+- Security update: minor version to serialize-javascript
 
 ## [1.3.3] - 2020-08-02
 ### Fixed
