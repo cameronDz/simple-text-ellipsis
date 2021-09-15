@@ -46,7 +46,7 @@
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.9.0",
     "serialize-javascript": "^3.0.0",
-    "set-value": "^3.0.1",
+    "set-value": "^4.0.1",
     "webpack-cli": "^3.3.8"
   },
   "files": [
