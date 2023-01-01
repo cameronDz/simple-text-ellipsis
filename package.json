@@ -8,7 +8,7 @@
     "@material-ui/core": "^4.4.2",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "webpack": "^4.40.0"
+    "webpack": "^5.75.0"
   },
   "description": "Simple React component to responsively control the size of text, and make longer/shorter depending on the screen size.",
   "devDependencies": {
@@ -47,7 +47,7 @@
     "react-test-renderer": "^16.9.0",
     "serialize-javascript": "^3.0.0",
     "set-value": "^3.0.1",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^5.0.1"
   },
   "files": [
     "index.js",
